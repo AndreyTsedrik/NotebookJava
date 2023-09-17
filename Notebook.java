@@ -25,13 +25,13 @@ public class Notebook {
     }
 
     public enum Criteria {
-        brand,
-        model,
-        ram,
-        hdd,
-        os,
-        color,
-        price;
+        BRAND,
+        MODEL,
+        RAM,
+        HDD,
+        OS,
+        COLOR,
+        PRICE;
     }
 
     public static Set<Notebook> filterNotebooks(Set<Notebook> notebooks, Map<Criteria, Predicate<Notebook>> criteria) {
@@ -55,33 +55,32 @@ public class Notebook {
                             + "3 - Операционная система\n"
                             + "4 - Цвет");
 
-            scanner.nextLine();
             String[] choices = scanner.nextLine().split(" ");
 
             for (String choice : choices) {
                 Criteria selectedCriteria;
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        selectedCriteria = Criteria.ram;
+                        selectedCriteria = Criteria.RAM;
                         System.out.print("Введите минимальный объем ОЗУ (в ГБ): ");
                         int ram = scanner.nextInt();
                         filters.put(selectedCriteria, n -> n.ram >= ram);
                         break;
                     case 2:
-                        selectedCriteria = Criteria.hdd;
+                        selectedCriteria = Criteria.HDD;
                         System.out.print("Введите минимальный объем ЖД (в ГБ): ");
                         int hdd = scanner.nextInt();
                         filters.put(selectedCriteria, n -> n.hdd >= hdd);
                         break;
                     case 3:
-                        selectedCriteria = Criteria.os;
+                        selectedCriteria = Criteria.OS;
                         System.out.print("Введите операционную систему: ");
                         scanner.nextLine();
                         String os = scanner.nextLine();
                         filters.put(selectedCriteria, n -> n.os.equalsIgnoreCase(os));
                         break;
                     case 4:
-                        selectedCriteria = Criteria.color;
+                        selectedCriteria = Criteria.COLOR;
                         System.out.print("Введите цвет: ");
                         scanner.nextLine();
                         String color = scanner.nextLine();
